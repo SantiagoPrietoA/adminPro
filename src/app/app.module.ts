@@ -19,16 +19,22 @@ import { SidebarService } from './providers/sidebar.service';
 // Rutas
 import { AppRoutingModule } from './app-routing.module';
 
+// temporales
+
+import { FormsModule } from '@angular/forms';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NopagefoundComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
     PagesModule,
+    FormsModule,
     AppRoutingModule, // ubicar siempre al final para que reconozca las rutas hijas tambien
   ],
   providers: [
