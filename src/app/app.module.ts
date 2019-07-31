@@ -12,8 +12,7 @@ import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component
 import { RegisterComponent } from './login/register.component';
 
 // Providers
-import { SharedService } from './providers/shared.service';
-import { SidebarService } from './providers/sidebar.service';
+import { ServiceModule } from './providers/service.module'
 
 
 // Rutas
@@ -35,12 +34,10 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     PagesModule,
     FormsModule,
+    ServiceModule,
     AppRoutingModule, // ubicar siempre al final para que reconozca las rutas hijas tambien
   ],
-  providers: [
-    SharedService,
-    SidebarService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

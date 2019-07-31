@@ -20,6 +20,7 @@ import { ChartsModule } from 'ng2-charts';
 // Temporales
 import { IncreaserComponent } from '../components/increaser/increaser.component';
 import { DougtnutComponent } from '../components/dougtnut/dougtnut.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { DougtnutComponent } from '../components/dougtnut/dougtnut.component';
     ProgressComponent,
     PagesComponent,
     IncreaserComponent,
-    DougtnutComponent
+    DougtnutComponent,
+    AccountSettingsComponent
   ],
   exports: [
     DashboardComponent,
@@ -37,7 +39,8 @@ import { DougtnutComponent } from '../components/dougtnut/dougtnut.component';
     ProgressComponent,
     PagesComponent,
     IncreaserComponent,
-    DougtnutComponent
+    DougtnutComponent,
+    AccountSettingsComponent
   ],
   imports: [
     SharedModule,
