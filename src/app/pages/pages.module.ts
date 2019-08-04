@@ -21,6 +21,8 @@ import { ChartsModule } from 'ng2-charts';
 import { IncreaserComponent } from '../components/increaser/increaser.component';
 import { DougtnutComponent } from '../components/dougtnut/dougtnut.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     PagesComponent,
     IncreaserComponent,
     DougtnutComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromisesComponent,
+    RxjsComponent
   ],
   exports: [
     DashboardComponent,
@@ -40,7 +44,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
     PagesComponent,
     IncreaserComponent,
     DougtnutComponent,
-    AccountSettingsComponent
+    AccountSettingsComponent,
+    PromisesComponent,
+    RxjsComponent
   ],
   imports: [
     SharedModule,
