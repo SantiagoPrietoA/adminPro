@@ -20,7 +20,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // temporales
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -34,6 +34,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     PagesModule,
     FormsModule,
+    ReactiveFormsModule,
     ServiceModule,
     AppRoutingModule, // ubicar siempre al final para que reconozca las rutas hijas tambien
   ],
