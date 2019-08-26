@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { UploadFileService } from '../uploadFile/upload-file.service';
 
 
 @Injectable({
@@ -15,7 +16,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor( public http: HttpClient, public router: Router) {
+  constructor( public http: HttpClient, public router: Router, public _uploadFileService: UploadFileService) {
     this.loadStorage();
    }
 
@@ -102,5 +103,40 @@ export class UsuarioService {
             });
               return Response.usuario;
          }));
+   }
+
+   updateUser ( usuario: Usuario ) {
+     const url = URL_SERVICE + '/usuarios/' + usuario._id + '?token=' + this.token;
+
+     return this.http.put( url, usuario)
+         .pipe( map((response: any) => {
+
+              let usuarioDB: Usuario = response.usuario;
+              Swal.fire(
+                'Usuario actualizado',
+                response.usuario.name,
+                'success'
+              );
+              this.saveStorage(usuarioDB._id, this.token, this.usuario);
+              return true;
+         }));
+   }
+
+   changeImg (archivo: File, id: string) {
+     console.log('archivo:', archivo);
+     this._uploadFileService.uploadFile(archivo, 'usuarios', id)
+       .then( (response: any) => {
+         this.usuario.img = response.usuario.img;
+         Swal.fire(
+          'Imagen actualizada',
+          response.usuario.name,
+          'success'
+        );
+         this.saveStorage(id, this.token, this.usuario);
+       })
+       .catch( response => {
+         console.log(response);
+       })
+
    }
 }

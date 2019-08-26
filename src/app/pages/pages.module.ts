@@ -24,6 +24,11 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 
+// Pipe Modulos
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +40,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     DougtnutComponent,
     AccountSettingsComponent,
     PromisesComponent,
-    RxjsComponent
+    RxjsComponent,
+    ProfileComponent
   ],
   exports: [
     DashboardComponent,
@@ -49,10 +55,12 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     RxjsComponent
   ],
   imports: [
+    CommonModule,
     SharedModule,
     PagesRoutingModule,
     FormsModule,
     ChartsModule,
+    PipesModule,
     BrowserModule,  // importado para trabajar con el ngFor dentro del modulo
   ]
 })
