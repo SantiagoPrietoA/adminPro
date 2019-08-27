@@ -8,6 +8,7 @@ export class UploadFileService {
 
   constructor() { }
 
+  // funcion para subir imagen utilizando javaScript
   uploadFile ( archivo: File, tipo: string, id: string) {
 
     return new Promise( (resolve, reject) => {
@@ -18,7 +19,6 @@ export class UploadFileService {
       formData.append( 'img', archivo, archivo.name);
 
       // estado de la subida
-
       xhr.onreadystatechange = function() {
         if (xhr.readyState === 4 ) {
           if (xhr.status === 200) {

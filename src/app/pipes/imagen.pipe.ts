@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { URL_SERVICE } from 'src/app/config/config';
-import { url } from 'inspector';
 
 @Pipe({
   name: 'imagen'

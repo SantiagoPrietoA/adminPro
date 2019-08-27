@@ -111,15 +111,19 @@ export class UsuarioService {
      return this.http.put( url, usuario)
          .pipe( map((response: any) => {
 
-              let usuarioDB: Usuario = response.usuario;
-              Swal.fire(
-                'Usuario actualizado',
-                response.usuario.name,
-                'success'
-              );
-              this.saveStorage(usuarioDB._id, this.token, this.usuario);
-              return true;
-         }));
+          if( usuario._id === this.usuario._id) {
+            const usuarioDB: Usuario = response.usuario;
+            this.saveStorage(usuarioDB._id, this.token, this.usuario);
+
+          }
+          Swal.fire(
+            'Usuario actualizado',
+            response.usuario.name,
+            'success'
+          );
+          return true;
+
+        }));
    }
 
    changeImg (archivo: File, id: string) {
@@ -138,5 +142,26 @@ export class UsuarioService {
          console.log(response);
        })
 
+   }
+
+   loadUsers( desde: number = 0) {
+     const url = URL_SERVICE + '/usuarios?desde=' + desde;
+
+     return this.http.get(url);
+   }
+
+   searchUsers(termino: string) {
+     const url = URL_SERVICE + '/busqueda/coleccion/usuario/' + termino;
+
+     return this.http.get(url)
+       .pipe( map(( response: any) => {
+         return response.usuarios;
+       }))
+   }
+
+   deleteUser( id: string) {
+
+    const url = URL_SERVICE + '/usuarios/' + id + '?token=' + this.token;
+    return this.http.delete(url);
    }
 }
