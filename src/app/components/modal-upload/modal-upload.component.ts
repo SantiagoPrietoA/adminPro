@@ -15,7 +15,7 @@ export class ModalUploadComponent implements OnInit {
   imgTemp: string | ArrayBuffer;
 
   // obtencion del elemento inputo para luego ser reseteado al cerrar el modal
-  @ViewChild('inputFile') myInputVariable: ElementRef;
+  @ViewChild('inputFile',{static: false}) myInputVariable: ElementRef;
 
 
   constructor(public _uploadFileService: UploadFileService, public _modalUploadService: ModalUploadService ) {}

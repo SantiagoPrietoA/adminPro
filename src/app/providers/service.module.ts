@@ -8,7 +8,9 @@ import {
   UsuarioService,
   LoginGuardGuard,
   UploadFileService,
-  ModalUploadService
+  ModalUploadService,
+  HospitalService,
+  MedicosService,
 } from './service.index';
 
 
@@ -24,7 +26,9 @@ import {
     UsuarioService,
     LoginGuardGuard,
     UploadFileService,
-    ModalUploadService
+    ModalUploadService,
+    HospitalService,
+    MedicosService,
   ]
 })
 export class ServiceModule { }
