@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { URL_SERVICE } from 'src/app/config/config';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { UploadFileService } from '../uploadFile/upload-file.service';
+import { of } from 'rxjs';
 
 
 @Injectable({
@@ -15,24 +16,31 @@ export class UsuarioService {
 
   usuario: Usuario;
   token: string;
+  menu: any[] = [];
 
   constructor( public http: HttpClient, public router: Router, public _uploadFileService: UploadFileService) {
     this.loadStorage();
    }
 
-   saveStorage( id: string, token: string, usuario: Usuario) {
+   saveStorage( id: string, token: string, usuario: Usuario, menu: any) {
     localStorage.setItem('id', id);
     localStorage.setItem('token', token);
     localStorage.setItem('usuario', JSON.stringify(usuario));
+    localStorage.setItem('menu', JSON.stringify(menu));
+
+    this.menu = menu;
    }
 
    loadStorage() {
      if (localStorage.getItem('token')) {
        this.token = localStorage.getItem('token');
        this.usuario = JSON.parse(localStorage.getItem('usuario'));
+       this.menu = JSON.parse(localStorage.getItem('menu'));
+
      } else {
       this.token = '';
       this.usuario = null;
+      this.menu = [];
      }
    }
 
@@ -47,8 +55,10 @@ export class UsuarioService {
   logout() {
     this.token = '';
     this.usuario = null;
+    this.menu = [];
     localStorage.removeItem('token');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('menu');
 
     this.router.navigate(['/login']);
     // window.location.href = '#/login';
@@ -69,12 +79,19 @@ export class UsuarioService {
 
     return this.http.post(url, usuario)
         .pipe( map( (response: any) => {
-          // localStorage.setItem('id', response.id);
-          // localStorage.setItem('token', response.token);
-          // localStorage.setItem('usuario', JSON.stringify(response.usuario));
-          this.saveStorage(response.id, response.token, response.usuario);
+          this.saveStorage(response.id, response.token, response.usuario, response.menu);
           return true
-        }));
+        }))
+        .pipe( catchError( err => 
+          of([
+            Swal.fire(
+              'Error Login',
+              err.error.mensaje,
+              'error'
+            )
+            ])))
+        
+        
    }
 
    loginGoogle( token ) {
@@ -85,7 +102,7 @@ export class UsuarioService {
       // localStorage.setItem('id', response.id);
       // localStorage.setItem('token', response.token);
       // localStorage.setItem('usuario', JSON.stringify(response.usuario));
-      this.saveStorage(response.id, response.token, response.usuario);
+      this.saveStorage(response.id, response.token, response.usuario, response.menu);
       return true
     }));
    }
@@ -102,7 +119,15 @@ export class UsuarioService {
               type: 'success',
             });
               return Response.usuario;
-         }));
+         }))
+         .pipe( catchError( err => 
+          of([
+            Swal.fire(
+              'Error de creación',
+              err.error.mensaje,
+              'error'
+            )
+            ])))
    }
 
    updateUser ( usuario: Usuario ) {
@@ -113,7 +138,7 @@ export class UsuarioService {
 
           if( usuario._id === this.usuario._id) {
             const usuarioDB: Usuario = response.usuario;
-            this.saveStorage(usuarioDB._id, this.token, this.usuario);
+            this.saveStorage(usuarioDB._id, this.token, this.usuario, this.menu);
 
           }
           Swal.fire(
@@ -136,7 +161,7 @@ export class UsuarioService {
           response.usuario.name,
           'success'
         );
-         this.saveStorage(id, this.token, this.usuario);
+         this.saveStorage(id, this.token, this.usuario, this.menu);
        })
        .catch( response => {
          console.log(response);

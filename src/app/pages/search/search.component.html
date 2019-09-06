@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Usuarios</div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios" [routerLink]="['/usuarios']" class="pointer">
+                            <td>
+                                <img [src]="usuario.img | imagen" alt="" class="w50 img-circle">
+                            </td>
+                            <td>{{ usuario.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Medicos</div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let medico of medicos" [routerLink]="['/medico', medico._id]" class="pointer">
+                            <td>
+                                <img [src]="medico.img | imagen:'medicos'" alt="" class="w50 img-circle">
+                            </td>
+                            <td>{{ medico.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">Hospitales</div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitales" [routerLink]="['/hospitales']" class="pointer">
+                            <td>
+                                <img [src]="hospital.img | imagen:'hospitales'" alt="" class="w50 img-circle">
+                            </td>
+                            <td>{{ hospital.name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

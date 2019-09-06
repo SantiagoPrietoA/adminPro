@@ -13,6 +13,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
+import { SearchComponent } from './search/search.component';
+import { AdminGuard } from '../providers/service.index';
 
 const routes: Routes = [
   {
@@ -26,9 +28,10 @@ const routes: Routes = [
       { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Configuraciones del tema'}},
       { path: 'promises', component: PromisesComponent, data: { titulo: 'Promesas'}},
       { path: 'rxjs', component: RxjsComponent, data: { titulo: 'ReactiveX'}},
-      { path: 'perfil', component: ProfileComponent, data: { titulo: 'perfil'}},
+      { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil'}},
+      { path: 'search/:termino', component: SearchComponent, data: { titulo: 'Busqueda'}},
       // Mantenimientos
-      { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de usuarios'}},
+      { path: 'usuarios', component: UsuariosComponent, data: { titulo: 'Mantenimiento de usuarios'}, canActivate: [AdminGuard] },
       { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Mantenimiento de hospitales'}},
       { path: 'medicos', component: MedicosComponent, data: { titulo: 'Mantenimiento de medicos'}},
       { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Cear medico'}},

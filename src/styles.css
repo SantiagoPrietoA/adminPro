@@ -31,3 +31,8 @@
 .oculto {
     display: none;
 }
+
+.app-search {
+    width: 70% !important;
+    left: 16% !important;
+}
