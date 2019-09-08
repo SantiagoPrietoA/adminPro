@@ -41,7 +41,7 @@ import { SearchComponent } from './search/search.component';
     DashboardComponent,
     Graph1Component,
     ProgressComponent,
-    PagesComponent,
+    // PagesComponent,
     IncreaserComponent,
     DougtnutComponent,
     AccountSettingsComponent,
@@ -49,7 +49,7 @@ import { SearchComponent } from './search/search.component';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent,
+    // ModalUploadComponent,
     HospitalesComponent,
     MedicosComponent,
     MedicoComponent,
@@ -59,7 +59,7 @@ import { SearchComponent } from './search/search.component';
     DashboardComponent,
     Graph1Component,
     ProgressComponent,
-    PagesComponent,
+    // PagesComponent,
     IncreaserComponent,
     DougtnutComponent,
     AccountSettingsComponent,
@@ -67,16 +67,15 @@ import { SearchComponent } from './search/search.component';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent
+    // ModalUploadComponent
   ],
   imports: [
     CommonModule,
-    SharedModule,
+    // BrowserModule,  // importado para trabajar con el ngFor dentro del modulo
     PagesRoutingModule,
     FormsModule,
     ChartsModule,
     PipesModule,
-    BrowserModule,  // importado para trabajar con el ngFor dentro del modulo
   ]
 })
 export class PagesModule { }

@@ -17,11 +17,8 @@ import { SearchComponent } from './search/search.component';
 import { AdminGuard } from '../providers/service.index';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: PagesComponent,
-    canActivate: [LoginGuardGuard],
-    children: [
+  
+    
       { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard'}},
       { path: 'progress', component: ProgressComponent, data: { titulo: 'Progress'}},
       { path: 'graph1', component: Graph1Component, data: { titulo: 'Gráficas'}},
@@ -37,8 +34,6 @@ const routes: Routes = [
       { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Cear medico'}},
 
       { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-    ]
-  }
 ];
 
 @NgModule({

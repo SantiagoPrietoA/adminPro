@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 
 // Modulos
-import { PagesModule } from './pages/pages.module';
 
 // Componentes
 import { AppComponent } from './app.component';
@@ -21,6 +20,8 @@ import { AppRoutingModule } from './app-routing.module';
 // temporales
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PagesComponent } from './pages/pages.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -29,14 +30,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     NopagefoundComponent,
     RegisterComponent,
+    PagesComponent,
     
   ],
   imports: [
     BrowserModule,
-    PagesModule,
     FormsModule,
     ReactiveFormsModule,
     ServiceModule,
+    SharedModule,
     AppRoutingModule, // ubicar siempre al final para que reconozca las rutas hijas tambien
   ],
   providers: [],
